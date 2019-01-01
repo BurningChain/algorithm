@@ -14,6 +14,7 @@ public class SortUtils {
 
         System.out.println(Arrays.toString(bubbleSort(arr)));
         System.out.println(Arrays.toString(insertSort(arr)));
+        System.out.println(Arrays.toString(quickSort(arr, 0, arr.length - 1)));
     }
 
 
@@ -73,4 +74,108 @@ public class SortUtils {
 
         return arr;
     }
+
+    /**
+     * 插入排序算法
+     *
+     * @param arr
+     * @return
+     */
+    public static int[] insertSortRepeat(int[] arr) {
+
+        for (int i = 1; i < arr.length; i++) {
+            int preIndex = i - 1;
+            int current = arr[i];
+
+            while (preIndex >= 0 && arr[preIndex] > current) {
+                arr[preIndex + 1] = arr[preIndex];
+                preIndex--;
+            }
+
+            arr[preIndex] = current;
+        }
+        return arr;
+    }
+
+
+    /**
+     * 快速排序算法
+     *
+     * @param arr
+     * @return
+     */
+    public static int[] quickSort(int[] arr, int left, int right) {
+        if (left > right) {
+            return arr;
+        }
+        int low = left, high = right;
+        int pivot = arr[low];
+        while (low < high) {
+            while (low < high && arr[low] < pivot) {
+                low++;
+            }
+
+            while (low < high && arr[high] > pivot) {
+                high--;
+            }
+
+            if (low < high) {
+                int temp = arr[low];
+                arr[low] = arr[high];
+                arr[high] = temp;
+            }
+        }
+
+        arr[left] = arr[low];
+        arr[low] = pivot;
+        quickSort(arr, left, low - 1);
+        quickSort(arr, low + 1, right);
+        return arr;
+    }
+
+
+
+
+
+
+
+    public static class QuickSort{
+
+
+        /**
+         * 快速排序算法
+         *
+         * @param arr
+         * @return
+         */
+        public static int[] quickSort(int[] arr, int left, int right) {
+            int low = 0, high = arr.length;
+            int pivot = arr[low];
+            while (low < high) {
+                while (low < high && arr[low] < pivot) {
+                    low++;
+                }
+
+                while (low < high && arr[high] > pivot) {
+                    high--;
+                }
+
+                if (low < high) {
+                    int temp = arr[low];
+                    arr[low] = arr[high];
+                    arr[high] = temp;
+                }
+            }
+
+            arr[left] = arr[low];
+            arr[low] = pivot;
+            quickSort(arr, left, low - 1);
+            quickSort(arr, low + 1, right);
+            return arr;
+        }
+
+    }
+
+
+
 }

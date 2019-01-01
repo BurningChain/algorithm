@@ -140,10 +140,21 @@ public class SortAlgo {
      * @return
      */
     private static int[] quickSort(int[] arr) {
+        int low = 0, high = arr.length;
+        int pivot = arr[low];
 
+        while (low < high) {
+            while (arr[low + 1] < pivot && low < high) {
+                low++;
+            }
 
+            while (arr[high] > pivot && high > low) {
+                high--;
+            }
 
-
+            arr[high] = arr[low];
+        }
+        arr[high] = pivot;
         return arr;
     }
 
