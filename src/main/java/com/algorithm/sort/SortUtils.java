@@ -12,8 +12,8 @@ public class SortUtils {
 
     public static void main(String[] args) {
 
-        System.out.println(Arrays.toString(bubbleSort(arr)));
-        System.out.println(Arrays.toString(insertSort(arr)));
+//        System.out.println(Arrays.toString(bubbleSort(arr)));
+//        System.out.println(Arrays.toString(insertSort(arr)));
         System.out.println(Arrays.toString(quickSort(arr, 0, arr.length - 1)));
     }
 
@@ -108,38 +108,43 @@ public class SortUtils {
         if (left > right) {
             return arr;
         }
-        int low = left, high = right;
-        int pivot = arr[low];
-        while (low < high) {
-            while (low < high && arr[low] < pivot) {
-                low++;
-            }
+        int pivot = arr[left];//定义基准值为数组第一个数
+        int i = left;
+        int j = right;
 
-            while (low < high && arr[high] > pivot) {
-                high--;
+        while (i < j) {
+            //从右往左找比基准值小的数
+            while (pivot <= arr[j] && i < j) {
+                j--;
             }
-
-            if (low < high) {
-                int temp = arr[low];
-                arr[low] = arr[high];
-                arr[high] = temp;
+            //从左往右找比基准值大的数
+            while (pivot >= arr[i] && i < j) {
+                i++;
             }
+            //如果i<j，交换它们
+            if (i < j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            System.out.println(Arrays.toString(arr));
         }
+        arr[left] = arr[i];
+        arr[i] = pivot;//把基准值放到合适的位置
+        quickSort(arr, left, i - 1);//对左边的子数组进行快速排序
+        quickSort(arr, i + 1, right);//对右边的子数组进行快速排序
 
-        arr[left] = arr[low];
-        arr[low] = pivot;
-        quickSort(arr, left, low - 1);
-        quickSort(arr, low + 1, right);
         return arr;
     }
 
 
+    public static class QuickSort {
 
+        public static void main(String[] args) {
 
-
-
-
-    public static class QuickSort{
+            int[] ints = quickSort(arr, 0, arr.length - 1);
+            System.out.println(Arrays.toString(ints));
+        }
 
 
         /**
@@ -149,22 +154,24 @@ public class SortUtils {
          * @return
          */
         public static int[] quickSort(int[] arr, int left, int right) {
-            int low = 0, high = arr.length;
-            int pivot = arr[low];
+            if (left > right) {
+                return arr;
+            }
+            int low = left, high = right;
+            int pivot = arr[left];
             while (low < high) {
-                while (low < high && arr[low] < pivot) {
-                    low++;
-                }
-
-                while (low < high && arr[high] > pivot) {
+                while (low < high && arr[high] >= pivot) {
                     high--;
                 }
-
+                while (low < high && arr[low] <= pivot) {
+                    low++;
+                }
                 if (low < high) {
                     int temp = arr[low];
                     arr[low] = arr[high];
                     arr[high] = temp;
                 }
+                System.out.println(Arrays.toString(arr));
             }
 
             arr[left] = arr[low];
@@ -175,7 +182,6 @@ public class SortUtils {
         }
 
     }
-
 
 
 }

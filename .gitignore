@@ -1,6 +1,5 @@
-.idea/*
-target
-
+.idea
+/target/
 *.iml
 workspace.xml
 .classpath

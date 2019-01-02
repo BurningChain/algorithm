@@ -18,8 +18,11 @@ public class SortAlgo {
 //        System.out.println(Arrays.toString(insertSort(arr)));
 
 //        System.out.println(Arrays.toString(insertSortTwo(arr)));
-        System.out.println(Arrays.toString(bubbleSortTwo(arr)));
+//        System.out.println(Arrays.toString(bubbleSortTwo(arr)));
+
+        System.out.println(Arrays.toString(quickSort(arr, 0, arr.length - 1)));
     }
+
 
 
     /**
@@ -139,22 +142,33 @@ public class SortAlgo {
      * @param arr
      * @return
      */
-    private static int[] quickSort(int[] arr) {
-        int low = 0, high = arr.length;
+    private static int[] quickSort(int[] arr, int left, int right) {
+        if (left > right) {
+            return arr;
+        }
+        int low = left, high = right;
         int pivot = arr[low];
 
         while (low < high) {
-            while (arr[low + 1] < pivot && low < high) {
-                low++;
-            }
-
             while (arr[high] > pivot && high > low) {
                 high--;
             }
+            while (arr[low] < pivot && low < high) {
+                low++;
+            }
+            if (low < high) {
+                int temp = arr[low];
+                arr[low] = arr[high];
+                arr[high] = temp;
+            }
 
-            arr[high] = arr[low];
+            System.out.println(low + "=" + high + "\n" + Arrays.toString(arr));
         }
-        arr[high] = pivot;
+
+        arr[left] = arr[low];
+        arr[low] = pivot;
+        quickSort(arr, left, low - 1);
+        quickSort(arr, low + 1, right);
         return arr;
     }
 
