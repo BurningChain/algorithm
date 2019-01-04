@@ -14,8 +14,10 @@ public class SortUtils {
 
 //        System.out.println(Arrays.toString(bubbleSort(arr)));
 //        System.out.println(Arrays.toString(insertSort(arr)));
-        System.out.println(Arrays.toString(quickSort(arr, 0, arr.length - 1)));
+//        System.out.println(Arrays.toString(quickSort(arr, 0, arr.length - 1)));
+        System.out.println(Arrays.toString(shellSort(arr)));
     }
+
 
 
     /**
@@ -137,6 +139,47 @@ public class SortUtils {
         return arr;
     }
 
+    public static int[] shellSort(int[] arr) {
+        if (null == arr || arr.length <= 1) {
+            return arr;
+        }
+
+        for (int gap = arr.length / 2; gap >= 1; gap = gap / 2) {
+
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
+                int j = i - gap;
+                while (j >= 0 && temp < arr[j]) {
+                    arr[j + gap] = arr[j];
+                    j -= gap;
+                }
+                arr[j + gap] = temp;
+            }
+        }
+        return arr;
+    }
+
+
+    public static int[] shellSortRepeat(int[] arr) {
+        if (null == arr || arr.length <= 1) {
+            return arr;
+        }
+
+        for (int gap = arr.length / 3 + 1; gap >= 1; gap /= 2) {
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
+                int j = i - gap;
+                while (j >= 0 && temp < arr[j]) {
+                    arr[j + gap] = arr[j];
+                    j -= gap;
+                }
+                arr[j + gap] = temp;
+            }
+        }
+        return arr;
+    }
+
+
 
     public static class QuickSort {
 
@@ -182,6 +225,9 @@ public class SortUtils {
         }
 
     }
+
+
+
 
 
 }
