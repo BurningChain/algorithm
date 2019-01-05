@@ -1,6 +1,8 @@
 package com.algorithm.sort;
 
 
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -169,6 +171,35 @@ public class SortAlgo {
         arr[low] = pivot;
         quickSort(arr, left, low - 1);
         quickSort(arr, low + 1, right);
+        return arr;
+    }
+
+
+    /**
+     * 希尔排序算法
+     *
+     * @param arr
+     * @return
+     */
+    public static int[] shellSortReview(int[] arr) {
+
+        if (null == arr || arr.length <= 1) {
+            return arr;
+        }
+
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
+                int j = i - gap;
+                while(j >= 0 && arr[j + gap] < arr[j]) {
+                    arr[j + gap] = arr[j];
+                    j -= gap;
+                }
+                arr[j + gap] = temp;
+            }
+
+        }
+
         return arr;
     }
 
