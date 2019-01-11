@@ -180,6 +180,13 @@ public class SortUtils {
     }
 
 
+    public int[] heapSort(int[] arr) {
+
+
+
+        return arr;
+    }
+
 
     public static class QuickSort {
 
