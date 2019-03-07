@@ -20,7 +20,7 @@ public class RpcClient {
         this.serverAddress = serverAddress;
     }
 
-    public RpcClient(ServiceDiscovery serviceDiscovery) {
+    public RpcClient(ServiceDiscovery serviceDdiscovery) {
         this.serviceDiscovery = serviceDiscovery;
     }
 

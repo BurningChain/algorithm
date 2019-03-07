@@ -1,7 +1,6 @@
 package com.netty.rpc.registry;
 
 import com.netty.rpc.util.Constant;
-import org.apache.tomcat.util.bcel.Const;
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

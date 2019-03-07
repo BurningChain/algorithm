@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    addresses: 47.93.219.222
+    port: 5672
+    listener:
+      simple:
+        acknowledge-mode:

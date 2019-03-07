@@ -13,6 +13,10 @@ import org.springframework.cglib.reflect.FastClass;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+/**
+ * 2author miracle
+ * created at 2019-01-01
+ */
 public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcHandler.class);

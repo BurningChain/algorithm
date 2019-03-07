@@ -1,6 +1,5 @@
 package com.netty.NettyRpc.server;
 
-import com.netty.rpc.annotation.RpcService;
 import com.netty.rpc.encode.RpcDecoder;
 import com.netty.rpc.handler.RpcHandler;
 import com.netty.rpc.registry.ServiceRegistry;
@@ -96,7 +95,7 @@ public class NettyServer implements ApplicationContextAware, InitializingBean {
                             socketChannel.pipeline()
                                     .addLast(new LengthFieldBasedFrameDecoder(65536, 0, 4, 0, 0))
                                     .addLast(new RpcDecoder(RpcRequest.class))
-                                    .addLast(new RpcDecoder(RpcResponse.class))
+                                    .addLast(new RpcEncoder(RpcResponse.class))
                                     .addLast(new RpcHandler(handlerMap));
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128)
